@@ -43,8 +43,10 @@ def GetDoorStatus():
                 
             time.sleep(5)
         except:
-            client.messages.create(from_=f'whatsapp:{twilio_phonenumber()}',body=f'*Script is broken*\n{Timestamp}',to=f'whatsapp:{my_phonenumber()}')
+            
+            message = client.messages.create(from_=f'whatsapp:{twilio_phonenumber()}',body=f'*Script is broken*\n{Timestamp}',to=f'whatsapp:{my_phonenumber()}')
             print(f"Script Error - {Timestamp}")
+            print(f"{message.sid}\n")
             
             with open("./Logs/errors.log", "a") as errors:
                 errors.write(f"Script Error - {Timestamp}\n")
