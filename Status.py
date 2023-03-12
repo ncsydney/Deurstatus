@@ -8,8 +8,6 @@ import time
 
 def GetDoorStatus():
 
-    cTime = datetime.now()
-    Timestamp = cTime.strftime("%Y-%m-%d %H:%M:%S")
     url = PicoW()
     client = Client(account_sid(), auth_token())
 
@@ -28,7 +26,9 @@ def GetDoorStatus():
             GetDoorStatus = page_soup.find_all("p", {"class": "state"})
             split_string =GetDoorStatus[0].text.split(",", 1)
             new_state = split_string[0].lower()
-             
+            
+            cTime = datetime.now()
+            Timestamp = cTime.strftime("%Y-%m-%d %H:%M:%S")
             
             if old_state != new_state:
 
